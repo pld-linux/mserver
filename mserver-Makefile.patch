@@ -59,3 +59,31 @@ diff -Naur mserver-0.5.5/mserver/Makefile.am mserver-0.5.5-p/mserver/Makefile.am
  EXTRA_DIST = mserver.conf PROTOCOL
 -LDFLAGS=@XTRAFLAGS@
 +LDFLAGS=@LDFLAGS@ @XTRAFLAGS@
+diff -Nru mserver-0.5.5/docs/Makefile.am mserver-0.5.5.new/docs/Makefile.am
+--- mserver-0.5.5/docs/Makefile.am	Wed Jul  7 02:02:36 1999
++++ mserver-0.5.5.new/docs/Makefile.am	Mon Jun  5 00:26:03 2000
+@@ -8,7 +8,9 @@
+ 		m4 doc.m4 > doc.html
+ all: doc.html clients.html clients.html
+ 
+-EXTRA_DIST = index.m4 index.txt alternatives.txt clients.m4 clients.txt doc.m4 doc.txt docindex.txt feedback.txt mserver.8 mserver.conf.5 roadmap.txt
++EXTRA_DIST = index.m4 index.txt alternatives.txt clients.m4 clients.txt doc.m4 doc.txt docindex.txt feedback.txtroadmap.txt
++
++man_MANS = mserver.8 mserver.conf.5
+ 
+ index.m4:
+ index.txt:
+diff -Nru mserver-0.5.5/mchat/Makefile.am mserver-0.5.5.new/mchat/Makefile.am
+--- mserver-0.5.5/mchat/Makefile.am	Mon Jun  5 00:27:25 2000
++++ mserver-0.5.5.new/mchat/Makefile.am	Mon Jun  5 00:26:28 2000
+@@ -1,7 +1,9 @@
+ bin_PROGRAMS		= mchat 
+ 
+ mchat_SOURCES	= mchat.c 
+- 
++
++man_MANS = mchat.8
++
+ LDFLAGS=@LDFLAGS@ @XTRAFLAGS@
+ CFLAGS= @CFLAGS@ -pipe @PPPFLAGS@
+ 
