@@ -14,7 +14,7 @@ Patch0:		mserver-config.patch
 Patch1:		mserver-dial.patch
 Patch2:		mserver-Makefile.patch
 Prereq:		chkconfig
-Requires:	rc-scripts >= 0.2.1
+Prereq:		rc-scripts >= 0.2.1
 Requires:	ppp
 BuildRequires:	automake
 BuildRequires:	pam-devel
