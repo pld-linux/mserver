@@ -1,4 +1,4 @@
-Summary:	Masq Dialer deamon.
+Summary:	Masq Dialer deamon
 Name:		mserver
 Version:	0.5.5
 Release:	1
@@ -10,15 +10,17 @@ URL:		http://w3.cpwright.com
 Source0:	ftp://ftp.cpwright.com/pub/mserver/c-%{name}-%{version}.tar.gz
 Source1:	mserver.init
 Source2:	mserver.pam
-Prereq:		chkconfig
-Requires:	rc-scripts >= 0.2.1
-Requires:	ppp
-Requires:	pam
-BuildRequires:	pam-devel
 Patch0:		mserver-config.patch
 Patch1:		mserver-dial.patch
 Patch2:		mserver-Makefile.patch
+Prereq:		chkconfig
+Requires:	rc-scripts >= 0.2.1
+Requires:	ppp
+BuildRequires:	automake
+BuildRequires:	pam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_bindir		%{_sbindir}
 
 %description
 The masqdialer system will allow authorized LAN users to manipulate the
@@ -37,36 +39,19 @@ clients.
 
 %build
 LDFLAGS="-s"; export LDFLAGS
-aclocal
-autoconf
-automake
-autoheader
 %configure
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir}/{ppp,pam.d}} \
-	$RPM_BUILD_ROOT{/etc/rc.d/init.d,%{_mandir}/{man5,man8}} \
-	$RPM_BUILD_ROOT%{_datadir}/mserver
+install -d $RPM_BUILD_ROOT/etc/{pam.d,rc.d/init.d} \
 
-install mserver/mserver $RPM_BUILD_ROOT%{_sbindir}/mserver
-install mchat/mchat $RPM_BUILD_ROOT%{_sbindir}/mchat
-install authgen/authgen $RPM_BUILD_ROOT%{_sbindir}/authgen
-install checkstat/findstat $RPM_BUILD_ROOT%{_sbindir}/findstat
-install checkstat/checkstat $RPM_BUILD_ROOT%{_sbindir}/checkstat
-install fakelink/linkcheck $RPM_BUILD_ROOT%{_sbindir}/fakelink
-install fakelink/linkdown $RPM_BUILD_ROOT%{_sbindir}/linkdown
-install fakelink/linkup $RPM_BUILD_ROOT%{_sbindir}/linkup
-
-install mchat/mchat.8 $RPM_BUILD_ROOT%{_mandir}/man8/mchat.8
-install docs/mserver.8 $RPM_BUILD_ROOT%{_mandir}/man8/mserver.8
-install docs/mserver.conf.5 $RPM_BUILD_ROOT%{_mandir}/man5/mserver.conf.5
-install COPYING $RPM_BUILD_ROOT%{_datadir}/mserver
-install ChangeLog $RPM_BUILD_ROOT%{_datadir}/mserver
+make install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/mserver
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/mserver
+
 touch $RPM_BUILD_ROOT%{_sysconfdir}/mserver.conf
 
 mv mchat/README README.mchat
@@ -102,15 +87,6 @@ fi
 %doc firewallscripts/ipfwadmscripts firewallscripts/ipchainscripts isdn
 %attr(640,root,root) %{_sysconfdir}/pam.d/mserver
 %attr(754,root,root) /etc/rc.d/init.d/mserver
-%attr(755,root,root) %{_sbindir}/mserver
-%attr(755,root,root) %{_sbindir}/mchat
-%attr(755,root,root) %{_sbindir}/authgen
-%attr(755,root,root) %{_sbindir}/findstat
-%attr(755,root,root) %{_sbindir}/checkstat
-%attr(755,root,root) %{_sbindir}/fakelink
-%attr(755,root,root) %{_sbindir}/linkdown
-%attr(755,root,root) %{_sbindir}/linkup
-%{_datadir}/mserver/COPYING
-%{_datadir}/mserver/ChangeLog
-%{_mandir}/man*/*
 %config(noreplace) %ghost %{_sysconfdir}/mserver.conf
+%attr(755,root,root) %{_bindir}/*
+%{_mandir}/man*/*
