@@ -37,7 +37,7 @@ implementation or Web Browser have clients.
 %description -l pl
 Masqdialer pozwala autoryzowanym u¿ytkownikom sieci LAN na
 manipulowanie interfejsami sieciowymi (zwykle modemem), które daj±
-dostêp do Internetu poprzez "pude³ko" z Linuxem bez potrzeby u¿ywania
+dostêp do Internetu poprzez "pude³ko" z Linuksem bez potrzeby u¿ywania
 telnetu. Jest on bazowany na architekturze klient/server, wiêc ka¿dy
 system z aktywnym TCP/IP powinien byæ w stanie korzystaæ, je¿eli tylko
 klient zostanie napisany. Aktualnie: Linux, Windows, NetBSD oraz
