@@ -51,7 +51,7 @@ systemy z implementacj± Javy lub przegl±dark± Web.
 rm -f missing
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 %configure
 %{__make}
 
