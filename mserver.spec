@@ -64,10 +64,20 @@ gzip -9nf docs/index.html README AUTHORS ChangeLog README.mchat mserver/PROTOCOL
 rm -rf $RPM_BUILD_ROOT
 
 %post
-DESC="masqdialer daemon"; %chkconfig_add
+chkconfig --add mserver
+if [ -f /var/lock/subsys/mserver ]; then
+	/etc/rc.d/init.d/mserver restart >&2
+else
+	echo "Run \"/etc/rc.d/init.d/mserver start\" to start masqdialer daemon."
+fi
 
 %preun
-%chkconfig_del
+if [ "$1" = 0 ]; then
+	if [ -f /var/lock/subsys/mserver ]; then
+		/etc/rc.d/init.d/mserver stop >&2
+	fi
+	/sbin/chkconfig --del mserver
+fi
 
 %files
 %defattr(644,root,root,755)
