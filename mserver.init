@@ -4,9 +4,9 @@
 #
 # chkconfig:	345 95 05
 #
-# description:	The masqdialer system will allow authorized LAN users to
-#		manipulate the network interface (usually a modem) that
-#		gives the Internet access on a Linux box without having to
+# description:	The masqdialer system will allow authorized LAN users to \
+#		manipulate the network interface (usually a modem) that \
+#		gives the Internet access on a Linux box without having to \
 #		use telnet.
 
 # Source function library
