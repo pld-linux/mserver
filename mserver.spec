@@ -99,7 +99,7 @@ fi
 %defattr(644,root,root,755)
 %doc *.gz mserver/*.gz docs/*.gz docs/images
 %doc firewallscripts/ipfwadmscripts firewallscripts/ipchainscripts isdn
-%attr(640,root,root) /etc/pam.d/mserver
+%attr(640,root,root) %config(noreplace) %verify(not size, mtime, md5) /etc/pam.d/mserver
 %attr(754,root,root) /etc/rc.d/init.d/mserver
 %config(noreplace) %ghost %{_sysconfdir}/mserver.conf
 %attr(755,root,root) %{_bindir}/*
