@@ -2,23 +2,24 @@ Summary:	Masq Dialer deamon
 Summary(pl):	Serwer MasqDialer - zestawiaj±cy po³±czenia do Internetu
 Name:		mserver
 Version:	0.5.5
-Release:	3
+Release:	4
 License:	GPL
 Vendor:		Chares P. Wright <cpwright@cpwright.com>
 Group:		Networking/Daemons
-Source0:	ftp://ftp.cpwright.com/pub/mserver/c-%{name}-%{version}.tar.gz
+Source0:	http://w3.cpwright.com/mserver/download/c-%{name}-%{version}.tar.gz
 # Source0-md5:	ee4348241ac8e42d6b62c93036ffaf71
 Source1:	%{name}.init
 Source2:	%{name}.pam
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-dial.patch
 Patch2:		%{name}-Makefile.patch
-URL:		http://w3.cpwright.com/
+Patch3:		%{name}-errno.patch
+URL:		http://w3.cpwright.com/mserver/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	pam-devel
-Prereq:		/sbin/chkconfig
-Prereq:		rc-scripts >= 0.2.1
+PreReq:		rc-scripts >= 0.2.1
+Requires(post,preun):	/sbin/chkconfig
 Requires:	ppp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,11 +48,12 @@ systemy z implementacj± Javy lub przegl±dark± Web.
 %patch0
 %patch1
 %patch2 -p1
+%patch3 -p1
 
 %build
-rm -f missing
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 %{__make}
@@ -75,7 +77,7 @@ rm -rf {docs/images,isdn,firewallscripts/{ipfwadm,ipchain}scripts}/CVS
 rm -rf $RPM_BUILD_ROOT
 
 %post
-chkconfig --add mserver
+/sbin/chkconfig --add mserver
 if [ -f /var/lock/subsys/mserver ]; then
 	/etc/rc.d/init.d/mserver restart >&2
 else
@@ -94,7 +96,7 @@ fi
 %defattr(644,root,root,755)
 %doc docs/index.html README AUTHORS ChangeLog README.mchat mserver/PROTOCOL
 %doc mserver/mserver.conf isdn/{ipppd*,isdn.txt}
-%doc firewallscripts/{ipfwadm,ipchain}scripts/client{up,down}
+%doc firewallscripts/ipchainscripts/client{up,down}
 %attr(640,root,root) %config(noreplace) %verify(not size, mtime, md5) /etc/pam.d/mserver
 %attr(754,root,root) /etc/rc.d/init.d/mserver
 %config(noreplace) %ghost %{_sysconfdir}/mserver.conf
