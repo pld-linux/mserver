@@ -7,6 +7,7 @@ License:	GPL
 Vendor:		Chares P. Wright <cpwright@cpwright.com>
 Group:		Networking/Daemons
 Source0:	ftp://ftp.cpwright.com/pub/mserver/c-%{name}-%{version}.tar.gz
+# Source0-md5:	ee4348241ac8e42d6b62c93036ffaf71
 Source1:	%{name}.init
 Source2:	%{name}.pam
 Patch0:		%{name}-config.patch
