@@ -49,7 +49,7 @@ systemy z implementacj± Javy lub przegl±dark± Web.
 
 %build
 rm -f missing
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure
