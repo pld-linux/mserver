@@ -3,10 +3,10 @@ Name:		mserver
 Version:	0.5.5
 Release:	2
 License:	GPL
+Vendor:		Chares P. Wright <cpwright@cpwright.com>
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
-Vendor:		Chares P. Wright <cpwright@cpwright.com>
 URL:		http://w3.cpwright.com
 Source0:	ftp://ftp.cpwright.com/pub/mserver/c-%{name}-%{version}.tar.gz
 Source1:	%{name}.init
@@ -14,11 +14,12 @@ Source2:	%{name}.pam
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-dial.patch
 Patch2:		%{name}-Makefile.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	pam-devel
 Prereq:		chkconfig
 Prereq:		rc-scripts >= 0.2.1
 Requires:	ppp
-BuildRequires:	automake
-BuildRequires:	pam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_bindir		%{_sbindir}
@@ -57,7 +58,7 @@ automake -a -c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/{pam.d,rc.d/init.d} \
+install -d $RPM_BUILD_ROOT/etc/{pam.d,rc.d/init.d} \
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -97,7 +98,7 @@ fi
 %defattr(644,root,root,755)
 %doc *.gz mserver/*.gz docs/*.gz docs/images
 %doc firewallscripts/ipfwadmscripts firewallscripts/ipchainscripts isdn
-%attr(640,root,root) %{_sysconfdir}/pam.d/mserver
+%attr(640,root,root) /etc/pam.d/mserver
 %attr(754,root,root) /etc/rc.d/init.d/mserver
 %config(noreplace) %ghost %{_sysconfdir}/mserver.conf
 %attr(755,root,root) %{_bindir}/*
