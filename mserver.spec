@@ -1,18 +1,19 @@
 Summary:	Masq Dialer deamon
 Name:		mserver
 Version:	0.5.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
+Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 Vendor:		Chares P. Wright <cpwright@cpwright.com>
 URL:		http://w3.cpwright.com
 Source0:	ftp://ftp.cpwright.com/pub/mserver/c-%{name}-%{version}.tar.gz
-Source1:	mserver.init
-Source2:	mserver.pam
-Patch0:		mserver-config.patch
-Patch1:		mserver-dial.patch
-Patch2:		mserver-Makefile.patch
+Source1:	%{name}.init
+Source2:	%{name}.pam
+Patch0:		%{name}-config.patch
+Patch1:		%{name}-dial.patch
+Patch2:		%{name}-Makefile.patch
 Prereq:		chkconfig
 Prereq:		rc-scripts >= 0.2.1
 Requires:	ppp
@@ -23,13 +24,22 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_bindir		%{_sbindir}
 
 %description
-The masqdialer system will allow authorized LAN users to manipulate the
-network interface (usually a modem) that gives the Internet access on a
-Linux box without having to use telnet. It's based on a client/server
-approach so any TCP/IP enabled system should be able to take advantage of
-this server, if a client is written for it. Currently; Linux, Windows,
-NetBSD, and any system with a Java implementation or Web Browser have
-clients.
+The masqdialer system will allow authorized LAN users to manipulate
+the network interface (usually a modem) that gives the Internet access
+on a Linux box without having to use telnet. It's based on a
+client/server approach so any TCP/IP enabled system should be able to
+take advantage of this server, if a client is written for it.
+Currently; Linux, Windows, NetBSD, and any system with a Java
+implementation or Web Browser have clients.
+
+%description -l pl
+Masqdialer pozwala autoryzowanym u¿ytkownikom sieci LAN na
+manipulowanie interfejsami sieciowymi (zwykle modemem), które daj±
+dostêp do Internetu poprzez "pude³ko" z Linuxem bez potrzeby u¿ywania
+telnetu. Jest on bazowany na architekturze klient/server, wiêc ka¿dy
+system z aktywnym TCP/IP powinien byæ w stanie korzystaæ, je¿eli tylko
+klient zostanie napisany. Aktualnie: Linux, Windows, NetBSD oraz
+systemy z implementacj± Javy lub przegl±dark± Web.
 
 %prep
 %setup -q
@@ -38,12 +48,16 @@ clients.
 %patch2 -p1
 
 %build
+rm -f missing
+aclocal
+autoconf
+automake -a -c
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/{pam.d,rc.d/init.d} \
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/{pam.d,rc.d/init.d} \
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
