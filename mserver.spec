@@ -70,10 +70,6 @@ touch $RPM_BUILD_ROOT%{_sysconfdir}/mserver.conf
 mv -f mchat/README README.mchat
 rm -rf {docs/images,isdn,firewallscripts/{ipfwadm,ipchain}scripts}/CVS
 
-gzip -9nf docs/index.html README AUTHORS ChangeLog README.mchat mserver/PROTOCOL \
-	mserver/mserver.conf isdn/{ipppd*,isdn.txt} \
-	firewallscripts/{ipfwadm,ipchain}scripts/client{up,down}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -95,8 +91,9 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz mserver/*.gz docs/*.gz docs/images
-%doc firewallscripts/ipfwadmscripts firewallscripts/ipchainscripts isdn
+%doc docs/index.html README AUTHORS ChangeLog README.mchat mserver/PROTOCOL
+%doc mserver/mserver.conf isdn/{ipppd*,isdn.txt}
+%doc firewallscripts/{ipfwadm,ipchain}scripts/client{up,down}
 %attr(640,root,root) %config(noreplace) %verify(not size, mtime, md5) /etc/pam.d/mserver
 %attr(754,root,root) /etc/rc.d/init.d/mserver
 %config(noreplace) %ghost %{_sysconfdir}/mserver.conf
