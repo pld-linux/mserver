@@ -63,7 +63,7 @@ install -d $RPM_BUILD_ROOT/etc/{pam.d,rc.d/init.d}
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/mserver
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/mserver
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/pam.d/mserver
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/mserver.conf
 
