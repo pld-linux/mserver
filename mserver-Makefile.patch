@@ -1,0 +1,61 @@
+diff -Naur mserver-0.5.5/authgen/Makefile.am mserver-0.5.5-p/authgen/Makefile.am
+--- mserver-0.5.5/authgen/Makefile.am	Wed Jul  7 02:02:29 1999
++++ mserver-0.5.5-p/authgen/Makefile.am	Sun Jun  4 13:29:06 2000
+@@ -3,4 +3,4 @@
+ authgen_SOURCES		= authgen.c
+ 
+ EXTRA_DIST		= sample
+-LDFLAGS=@XTRAFLAGS@
++LDFLAGS=@LDFLAGS@ @XTRAFLAGS@
+diff -Naur mserver-0.5.5/checkstat/Makefile.am mserver-0.5.5-p/checkstat/Makefile.am
+--- mserver-0.5.5/checkstat/Makefile.am	Wed Jul  7 02:02:29 1999
++++ mserver-0.5.5-p/checkstat/Makefile.am	Sun Jun  4 13:29:12 2000
+@@ -1,4 +1,4 @@
+ bin_PROGRAMS = checkstat findstat
+ checkstat_SOURCES = checkstat.c config.c getstat.c mserver.h param_dbase.c util.c
+ findstat_SOURCES = findstat.c config.c getstat.c param_dbase.c util.c 
+-CFLAGS = -DUTIL
++CFLAGS = @CFLAGS@ -DUTIL
+diff -Naur mserver-0.5.5/configure.in mserver-0.5.5-p/configure.in
+--- mserver-0.5.5/configure.in	Sat Jul 24 03:42:19 1999
++++ mserver-0.5.5-p/configure.in	Sun Jun  4 13:28:40 2000
+@@ -32,9 +32,6 @@
+         AC_DEFINE(HAVE_PAM)])
+ fi
+ 
+-CFLAGS='-O2 -Wall'
+-
+-
+ AC_PREFIX_DEFAULT(/usr/local/)
+ SHELL="/bin/sh"
+ AC_SUBST(SHELL)
+diff -Naur mserver-0.5.5/fakelink/Makefile.am mserver-0.5.5-p/fakelink/Makefile.am
+--- mserver-0.5.5/fakelink/Makefile.am	Wed Jul  7 02:02:56 1999
++++ mserver-0.5.5-p/fakelink/Makefile.am	Sun Jun  4 13:29:24 2000
+@@ -6,4 +6,4 @@
+ 
+ linkup_SOURCES		= linkup.c
+  
+-LDFLAGS=@XTRAFLAGS@
++LDFLAGS=@LDFLAGS@ @XTRAFLAGS@
+diff -Naur mserver-0.5.5/mchat/Makefile.am mserver-0.5.5-p/mchat/Makefile.am
+--- mserver-0.5.5/mchat/Makefile.am	Wed Jul  7 02:03:00 1999
++++ mserver-0.5.5-p/mchat/Makefile.am	Sun Jun  4 13:34:38 2000
+@@ -2,6 +2,6 @@
+ 
+ mchat_SOURCES	= mchat.c 
+  
+-LDFLAGS=@XTRAFLAGS@
+-CFLAGS= -O2 -pipe @PPPFLAGS@
++LDFLAGS=@LDFLAGS@ @XTRAFLAGS@
++CFLAGS= @CFLAGS@ -pipe @PPPFLAGS@
+ 
+diff -Naur mserver-0.5.5/mserver/Makefile.am mserver-0.5.5-p/mserver/Makefile.am
+--- mserver-0.5.5/mserver/Makefile.am	Wed Jul  7 02:03:08 1999
++++ mserver-0.5.5-p/mserver/Makefile.am	Sun Jun  4 13:29:48 2000
+@@ -2,4 +2,4 @@
+ 
+ mserver_SOURCES	= mserver.c getstat.c config.c util.c kill.c list.c dial.c cinfo.c socket.c serve.c halt.c time.c stat.c info.c cfile.c auth.c child.c cleanup.c ipc.c parse.c param_dbase.c findcon.c exename.c lock.c netload.c param_dbase.h mserver.h capture.c
+ EXTRA_DIST = mserver.conf PROTOCOL
+-LDFLAGS=@XTRAFLAGS@
++LDFLAGS=@LDFLAGS@ @XTRAFLAGS@

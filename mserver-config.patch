@@ -1,0 +1,13 @@
+--- mserver/config.c.orig	Tue Jul 13 17:11:27 1999
++++ mserver/config.c	Tue Nov  2 10:50:26 1999
+@@ -99,7 +99,9 @@
+ 					data[n] = '\0';
+ 				}
+ 
+-				config_setvalue(key, data);
++				if (*key != 0) {
++					config_setvalue(key, data);
++				}
+ 			}
+ 		}
+ 		fclose (cfile);

@@ -1,0 +1,38 @@
+--- mserver/dial.c.orig	Wed Jul  7 01:03:14 1999
++++ mserver/dial.c	Tue Nov  2 11:04:18 1999
+@@ -138,11 +138,12 @@
+ 	if (getstat())
+ 	{
+ 		char command[1024];
++		char script_name[1024];
+ 
+ 		cfile_write(cname);
+ 	
+-		config_getvalue_cname("linkup", command, 1024);
+-		snprintf(command, 1024, "%s \"%s\"", command, cname);
++		config_getvalue_cname("linkup", script_name, 1024);
++		snprintf(command, 1024, "%s \"%s\"", script_name, cname);
+ 		util_system(command);
+ 	}
+ 	netload_init();
+@@ -227,13 +228,14 @@
+        
+        if (getstat())
+        {
+-               char command[1024];
++		char command[1024];
++		char script_name[1024];
+ 
+-               cfile_write(cname);
+-       
+-               config_getvalue_cname("linkup", command, 1024);
+-               snprintf(command, 1024, "%s \"%s\"", command, cname);
+-               util_system(command);
++		cfile_write(cname);
++
++		config_getvalue_cname("linkup", script_name, 1024);
++		snprintf(command, 1024, "%s \"%s\"", script_name, cname);
++		util_system(command);
+        }
+        netload_init();
+ 
