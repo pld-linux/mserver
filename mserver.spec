@@ -50,8 +50,8 @@ systemy z implementacj± Javy lub przegl±dark± Web.
 %build
 rm -f missing
 aclocal
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure
 %{__make}
 
