@@ -38,7 +38,6 @@ clients.
 %patch2 -p1
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure
 %{__make}
 
@@ -57,8 +56,7 @@ touch $RPM_BUILD_ROOT%{_sysconfdir}/mserver.conf
 mv mchat/README README.mchat
 rm -rf {docs/images,isdn,firewallscripts/{ipfwadm,ipchain}scripts}/CVS
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
-	docs/index.html README AUTHORS ChangeLog README.mchat mserver/PROTOCOL \
+gzip -9nf docs/index.html README AUTHORS ChangeLog README.mchat mserver/PROTOCOL \
 	mserver/mserver.conf isdn/{ipppd*,isdn.txt} \
 	firewallscripts/{ipfwadm,ipchain}scripts/client{up,down}
 
