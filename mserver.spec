@@ -1,23 +1,24 @@
 Summary:	Masq Dialer deamon
+Summary(pl):	Serwer MasqDialer - zestawiaj±cy po³±czenia do Internetu
 Name:		mserver
 Version:	0.5.5
-Release:	2
+Release:	3
 License:	GPL
 Vendor:		Chares P. Wright <cpwright@cpwright.com>
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
-URL:		http://w3.cpwright.com
 Source0:	ftp://ftp.cpwright.com/pub/mserver/c-%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.pam
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-dial.patch
 Patch2:		%{name}-Makefile.patch
+URL:		http://w3.cpwright.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	pam-devel
-Prereq:		chkconfig
+Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts >= 0.2.1
 Requires:	ppp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -58,7 +59,7 @@ automake -a -c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/{pam.d,rc.d/init.d} \
+install -d $RPM_BUILD_ROOT/etc/{pam.d,rc.d/init.d}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -68,7 +69,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/mserver
 
 touch $RPM_BUILD_ROOT%{_sysconfdir}/mserver.conf
 
-mv mchat/README README.mchat
+mv -f mchat/README README.mchat
 rm -rf {docs/images,isdn,firewallscripts/{ipfwadm,ipchain}scripts}/CVS
 
 gzip -9nf docs/index.html README AUTHORS ChangeLog README.mchat mserver/PROTOCOL \
@@ -87,7 +88,7 @@ else
 fi
 
 %preun
-if [ "$1" = 0 ]; then
+if [ "$1" = "0" ]; then
 	if [ -f /var/lock/subsys/mserver ]; then
 		/etc/rc.d/init.d/mserver stop >&2
 	fi
