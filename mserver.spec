@@ -18,9 +18,9 @@ URL:		http://w3.cpwright.com/mserver/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	pam-devel
-PreReq:		rc-scripts >= 0.2.1
 Requires(post,preun):	/sbin/chkconfig
 Requires:	ppp
+Requires:	rc-scripts >= 0.2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_bindir		%{_sbindir}
@@ -97,7 +97,7 @@ fi
 %doc docs/index.html README AUTHORS ChangeLog README.mchat mserver/PROTOCOL
 %doc mserver/mserver.conf isdn/{ipppd*,isdn.txt}
 %doc firewallscripts/ipchainscripts/client{up,down}
-%attr(640,root,root) %config(noreplace) %verify(not size, mtime, md5) /etc/pam.d/mserver
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime, size,) /etc/pam.d/mserver
 %attr(754,root,root) /etc/rc.d/init.d/mserver
 %config(noreplace) %ghost %{_sysconfdir}/mserver.conf
 %attr(755,root,root) %{_bindir}/*
