@@ -4,7 +4,6 @@ Name:		mserver
 Version:	0.5.5
 Release:	4
 License:	GPL
-Vendor:		Chares P. Wright <cpwright@cpwright.com>
 Group:		Networking/Daemons
 Source0:	http://w3.cpwright.com/mserver/download/c-%{name}-%{version}.tar.gz
 # Source0-md5:	ee4348241ac8e42d6b62c93036ffaf71
@@ -18,6 +17,7 @@ URL:		http://w3.cpwright.com/mserver/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	pam-devel
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Requires:	ppp
 Requires:	rc-scripts >= 0.2.1
@@ -78,17 +78,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add mserver
-if [ -f /var/lock/subsys/mserver ]; then
-	/etc/rc.d/init.d/mserver restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/mserver start\" to start masqdialer daemon."
-fi
+%service mserver restart "masqdialer daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/mserver ]; then
-		/etc/rc.d/init.d/mserver stop >&2
-	fi
+	%service mserver stop
 	/sbin/chkconfig --del mserver
 fi
 
