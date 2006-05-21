@@ -2,7 +2,7 @@ Summary:	Masq Dialer deamon
 Summary(pl):	Serwer MasqDialer - zestawiaj±cy po³±czenia do Internetu
 Name:		mserver
 Version:	0.5.5
-Release:	4
+Release:	5
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://w3.cpwright.com/mserver/download/c-%{name}-%{version}.tar.gz
