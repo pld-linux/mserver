@@ -1,4 +1,4 @@
-Summary:	Masq Dialer deamon
+Summary:	Masq Dialer daemon
 Summary(pl):	Serwer MasqDialer - zestawiaj±cy po³±czenia do Internetu
 Name:		mserver
 Version:	0.5.5
