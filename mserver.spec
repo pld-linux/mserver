@@ -1,5 +1,5 @@
 Summary:	Masq Dialer daemon
-Summary(pl):	Serwer MasqDialer - zestawiaj±cy po³±czenia do Internetu
+Summary(pl.UTF-8):   Serwer MasqDialer - zestawiajÄ…cy poÅ‚Ä…czenia do Internetu
 Name:		mserver
 Version:	0.5.5
 Release:	5
@@ -34,14 +34,14 @@ take advantage of this server, if a client is written for it.
 Currently; Linux, Windows, NetBSD, and any system with a Java
 implementation or Web Browser have clients.
 
-%description -l pl
-Masqdialer pozwala autoryzowanym u¿ytkownikom sieci LAN na
-manipulowanie interfejsami sieciowymi (zwykle modemem), które daj±
-dostêp do Internetu poprzez "pude³ko" z Linuksem bez potrzeby u¿ywania
-telnetu. Jest on bazowany na architekturze klient/server, wiêc ka¿dy
-system z aktywnym TCP/IP powinien byæ w stanie korzystaæ, je¿eli tylko
+%description -l pl.UTF-8
+Masqdialer pozwala autoryzowanym uÅ¼ytkownikom sieci LAN na
+manipulowanie interfejsami sieciowymi (zwykle modemem), ktÃ³re dajÄ…
+dostÄ™p do Internetu poprzez "pudeÅ‚ko" z Linuksem bez potrzeby uÅ¼ywania
+telnetu. Jest on bazowany na architekturze klient/server, wiÄ™c kaÅ¼dy
+system z aktywnym TCP/IP powinien byÄ‡ w stanie korzystaÄ‡, jeÅ¼eli tylko
 klient zostanie napisany. Aktualnie: Linux, Windows, NetBSD oraz
-systemy z implementacj± Javy lub przegl±dark± Web.
+systemy z implementacjÄ… Javy lub przeglÄ…darkÄ… Web.
 
 %prep
 %setup -q
