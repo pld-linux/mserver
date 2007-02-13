@@ -1,5 +1,5 @@
 Summary:	Masq Dialer daemon
-Summary(pl.UTF-8):   Serwer MasqDialer - zestawiający połączenia do Internetu
+Summary(pl.UTF-8):	Serwer MasqDialer - zestawiający połączenia do Internetu
 Name:		mserver
 Version:	0.5.5
 Release:	5
