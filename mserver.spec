@@ -45,10 +45,10 @@ systemy z implementacją Javy lub przeglądarką Web.
 
 %prep
 %setup -q
-%patch0
-%patch1
-%patch2 -p1
-%patch3 -p1
+%patch -P0
+%patch -P1
+%patch -P2 -p1
+%patch -P3 -p1
 
 %build
 %{__aclocal}
